@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Poppins:wght@200;300;500;600;900&family=Quicksand&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+header{
+    background-color: rgb(143 207 199);
+    position: relative;
+}
+.pt-1{
+    padding-top:24px; /* 16px + 8px */
+}
+.pt-2{
+    padding-top: 32px;
+}
+.pt-3{
+    padding-top: 56px;
+}
+.text-size21{
+    font-size: 21px;
+}
+
+.text-center{
+    text-align: center;
+}
+.text-Montserrat{
+    font-family: Montserrat;
+}
+.text-gray{
+    color: #4e4c4c;    
+}
+#logo{
+    width: 100px;
+}
+#logo-text {
+    font-size: 25px;
+    font-weight: bold;
+    position: absolute;
+    top: 26px;
+    left: 141px;
+    color: white;
+    font-family: Montserrat;
+    letter-spacing: 2px;
+}
+.logo-align{
+    position: absolute;
+    top: 15px;
+    left: 70px;
+}
+#navlist{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav-item{
+    padding: 32px 30px;
+    margin-left: 15px;
+}
+
+.nav-item:hover{
+    /* border-bottom: 4px solid rgb(43, 42, 42); */
+    box-shadow: 0px 3px rgb(43, 42, 42);
+}
+
+.nav-link{
+    font-size: 18px;
+    font-weight: 500;
+    color: #4e4c4c;
+    font-family: Poppins;
+    letter-spacing: 2px;
+}
+
+/* main{
+    margin: auto;
+} */
+
+h2{
+    text-align: center;
+    font-size: 32px;
+    color: #4e4c4c;
+    margin:16px 0px; 
+    font-family: Roboto;  
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-top: 30px;
+}
+
+.copyright{
+    padding: 32px 30px;   
+    font-size: 16px;
+    font-weight: 500;
+    color: #4e4c4c;
+    font-family: Poppins;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+footer{
+    position:relative;
+    width:100%;
+    background-color: rgb(143 207 199);
+    margin-top: 60px;
+}
+
+
+/* -----------------Sign-up----------------------- */
+
+.form-container{
+    background-color: #8fc2cf;
+    max-width: 700px;
+    min-width: 700px;
+    padding-top: 25px;
+    padding-bottom:20px;
+    margin:auto;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+label{
+    min-width: 30%;
+    max-width: 30%;
+    margin-left: 49px;
+    color:#4e4c4c;
+    letter-spacing: 1px;
+    font-family: Poppins;
+}
+input[type=email],
+input[type=password],
+input[type=text],
+input[type=tel]{
+    padding: 15px 60px;
+    max-width: 55%;
+    min-width: 55%;
+    margin: 25px 20px;
+    font-size: 21px;
+    border-radius: 9px;
+    border: none;
+}
+input[type=email]{
+    margin-left:60px;
+    margin-right: 20px;
+}
+#btnsignUp{
+    max-width: 33%;
+    min-width: 33%;
+    padding: 12px 15px;
+    border-radius: 24px;
+    background-color: #072c36;
+    font-size: 25px;
+    color: white;
+    outline: none;
+    border: none;
+    margin: auto;
+}
+
+input[type=date],
+input[type=range],
+input[type=color],
+input[type=file]{
+    padding: 15px 60px;
+    max-width: 55%;
+    min-width: 55%;
+    margin: 25px 20px;
+    font-size: 21px;
+    border-radius: 9px;
+    border: none;
+}
+input[type=number]{
+    width: 53%;
+    padding: 13px 40px;
+    border-radius: 12px;
+    margin-left: 172px;
+    outline: none;
+    border: none;
+    margin-top: -34px;
+    font-size: 21px;
+}
+
+/* ------------------Sign up------------------------- */
+
+.margin-top{
+    margin-top:34px;    
+}
+
+.article-margin{
+    margin:auto;
+}
+
+.input-ml{
+    margin-left:98px !important;
+}
+
+.ml54{
+    margin-left:54px !important;
+}
+
+.ml145{
+    margin-left: 145px !important;
+}
+
+.ml117{
+    margin-left: 117px !important;
+}
+.margin{
+    margin: 30px 0px 30px;
+}
+/* -----------------Index------------- */
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 60px;
+}
+iframe{
+    min-height: 300px;
+    max-height: 300px;
+    /* margin-right:15px; */
+}
+
+iframe:last-of-type{
+    margin-right:0px;
+}
+
+.flex-box{
+    min-width: 320px;
+    max-width: 320px;
+}
+
+
+
+
+
+
+
+
+
+
