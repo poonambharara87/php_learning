@@ -1,0 +1,4 @@
+pdo
+
+
+$db = new PDO('mysql:host=localhost;dbname=implement_pdo;', 'root', ''); 
