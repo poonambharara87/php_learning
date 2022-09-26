@@ -1,0 +1,312 @@
+body{
+    box-sizing:border-box;
+    margin:0px;
+    padding:0px;
+}
+
+.text-color{
+    color: #212221;
+}
+#main-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#form-container{
+    width: 339px;
+    height: 450px;
+    background-color: #8fcfc7;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin: auto;
+}
+.inputStyle{
+    width: 300px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color:#363535;
+}
+.labelStyle{
+    font-size: 18px;
+    margin-left: 16px;
+    margin-bottom: 8px;
+    font-family: sans-serif;
+}
+
+.btn-submit{
+    width: 331px;
+    padding: 9px 14px;
+    border-radius: 3px;
+    font-size: 18px;
+    background-color:#212221;
+    color: white;
+    letter-spacing: 0px;
+    margin-top:20px;
+}
+
+h1{
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #212221;
+    margin: 5px;
+    font-size: 25px;
+}
+.message{
+    margin: 0px;
+    padding: 0px;
+    color: red;
+    text-align: right;
+    margin-right: 16px;
+}
+.login_link{
+    text-decoration:none;
+}
+.line{
+    text-align:center;
+}
+
+
+.btn-container{
+    position: relative;
+}
+.btn-logout{
+    position: absolute;
+    right: 64px;
+    top: 41px;
+    padding: 12px 25px;
+    background-color: skyblue;
+}
+
+.logout-link{
+    text-decoration: none;
+    font-size: 18px;
+}
+.text-color{
+    color: #212221;
+}
+#main-container{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align:center;
+}
+
+
+.labelStyle{
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: left;
+    margin: 10px 0px 10px 38px;
+}
+label:first-child{
+    margin-top:0px;
+}
+.fstyle{
+    height: 50px;
+    margin-left: 25px;
+    margin-bottom:10px;
+}
+
+a{
+    text-decoration:none;
+}
+.containerAdmin{
+    background-image: url('img/1.jpg');
+    height:1000px;
+}
+#sidebarAdmin{
+    background-color:skyblue;
+    height:1200px;
+    width:300px;
+}
+.menuAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding:0px;
+}
+.itemAdmin{
+    list-style-type: none;
+    padding: 18px 20px;
+    border-bottom: 2px solid darkslategray;
+}
+.linkAdmin{
+    font-size: 18px;
+    color: #2f2b2b;
+    font-family: sans-serif;
+    text-align: center;
+    margin-left: 48px;
+}
+
+
+caption{
+    font-size:21px;
+    font-weight:600;
+    margin-bottom:20px;
+}            
+table, th, td{
+    border:1px solid gray;
+    margin:2% 20% 10% 20%;
+}
+table{
+    margin-bottom: 50px;
+    margin-top: 80px;
+}
+td, th{
+    text-align: center;
+    padding:8px 16px;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+tr:nth-child(even), thead{
+    background-color: #8fcfc7;
+}
+.table{
+    margin-bottom: 50px;   
+}
+.add_buttonblog{
+    padding: 8px 16px;
+    background-color: #8fcfc7;
+    position: absolute;
+    top: 20px;
+    border: none;
+    border: 2px solid #7098b2;
+}
+.rightMoreblog{
+    right: 26%;
+}
+.rightblog{
+    right: 18%;               
+}
+.addblog{
+    text-align:center;
+}
+.alinkblog{
+    text-decoration: none;
+    font-size: 18px;
+    color: #302c2cf0;
+    font-family: Montserrat;
+}
+
+/* ------Edit blog------- */
+
+
+.text-colorEblog{
+    color: #212221;
+}
+#main-containerEblog{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#form-containerEblog{
+    width: 600px;
+    height: 600px;
+    background-color: #cfdddc;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    margin: auto;
+}
+.inputStyleEblog{
+    width: 500px;
+    padding: 8px 12px;
+    /* border-radius: 8px;
+    margin-bottom: 20px; */
+    font-size: 18px;
+    color:#363535;
+    margin:auto;
+}
+.labelStyleEblog{
+    font-size: 18px;
+    font-family: sans-serif;
+    text-align: left;
+    margin: 10px 0px 10px 38px;
+}
+label:first-child{
+    margin-top:0px;
+}
+.fstyleEblog{
+    height: 50px;
+    margin-left: 25px;
+    margin-bottom:10px;
+}
+
+.btn-submitEblog{
+    width: 331px;
+    padding: 9px 14px;
+    border-radius: 3px;
+    font-size: 18px;
+    background-color: #212221;
+    color: white;
+    letter-spacing: 0px;
+    /* margin: auto; */
+    margin: 16px 0px 0pc 137px;
+}
+
+.eblogHead{
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #212221;
+    margin: 5px;
+    font-size: 25px;
+}
+.blogImgEblog{
+    text-align: right;
+    margin-left: 37px;
+}
+
+
+/* -------------View Users--------- */
+
+.add_buttonUsr{
+    padding: 8px 16px;
+    background-color: #8fcfc7;
+    position: absolute;
+    top: 20px;
+    border: none;
+    border: 2px solid #7098b2;
+}
+.rightMoreUsr{
+    right: 26%;
+}
+.rightUsr{
+    right: 18%;               
+}
+.addUsr{
+    text-align:center;
+}
+.alinkUsr{
+    text-decoration: none;
+    font-size: 18px;
+    color: #302c2cf0;
+    font-family: Montserrat;
+}
+
+/* ---------Sub-Admin---- */
+
+.add_buttonSubAd{
+    padding: 8px 16px;
+    background-color: #8fcfc7;
+    position: absolute;
+    top: 20px;
+    border: none;
+    border: 2px solid #7098b2;
+}
+.rightMoreSubAd{
+    right: 26%;
+}
+.rightSubAd{
+    right: 18%;               
+}
+.addSubAd{
+    text-align:center;
+}
+.alinkSubAd{
+    text-decoration: none;
+    font-size: 18px;
+    color: #302c2cf0;
+    font-family: Montserrat;
+}
