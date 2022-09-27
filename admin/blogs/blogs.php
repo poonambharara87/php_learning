@@ -38,7 +38,51 @@ $blogs = new blogs($db);
             <tbody>
                 <?php
                     $query="select * from blogs";
-                    $blogs->blogs_data_view($query);
+                    $stmt= $blogs->blogs_data_view($query);
+                    if($stmt->rowCount() > 0){
+                        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+                            ?>
+                            <?php
+                                if($row['status'] == 0){
+                            ?>
+                                    <tr>
+                                        <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
+                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
+                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
+                                        <td><img  src="<?php  if(isset($row['blog_imgSource'])){ print_r($row['blog_imgSource']);}?>" alt="Blog Image"
+                                        height="50px" width="50px"></td>
+                                        <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
+                                        <td>Deactivate</td>
+                                        <td><a href="activeBlog.php?id=<?php echo $row['blog_id'];?>">Active</a></td>
+                                        <td><a href="editBlog.php?id=<?php echo $row['blog_id'];?>">Edit</a></td>
+                                        <td><a href="deleteBlog.php?id=<?php echo $row['blog_id'];?>">Delete</a></td>        
+                                    </tr>
+                    <?php
+            
+                    ?>
+                    <?php
+                                } //if 
+                                else{
+                    
+                                    ?>
+                                    <tr>
+                                        <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
+                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
+                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
+                                        <td><img  src="<?php  if(isset($row['blog_imgSource'])){ print_r($row['blog_imgSource']);}?>" alt="Blog Image"
+                                        height="50px" width="50px"></td>
+                                        <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
+                                        <td>Activate</td>
+                                        <td><a href="deactivateBlog.php?id=<?php echo $row['blog_id'];?>">Deactive</a></td>
+                                        <td><a href="editBlog.php?id=<?php echo $row['blog_id'];?>">Edit</a></td>
+                                        <td><a href="deleteBlog.php?id=<?php echo $row['blog_id'];?>">Delete</a></td>        
+                                    </tr>
+                    
+                                <?php
+                        }
+            
+                    } 
+                    }
                 ?>
             </tbody>
         </table>

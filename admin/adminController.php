@@ -26,7 +26,7 @@ class admin{
                 }
             } 
 
-
+            
             $stmt = $this->db->query('SELECT * FROM users WHERE role = 1 or 2'); //stmt object
             // while($row = $stmt->fetch()){ //here stmt return array
 
@@ -49,26 +49,9 @@ class admin{
     function subAdmin_data_view($query){
         $stmt = $this->db->prepare($query); //refrence object
         $stmt->execute(); //to execute prepare statement
-        if($stmt->rowCount() > 0){
-            while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        ?>
-            <tr>
-                <td><?php  if(isset($row['user_id'])){ print_r($row['user_id']);}?></td>
-                <td><?php  if(isset($row['user_firstname'])){ print_r($row['user_firstname']);}?></td>
-                <td><?php  if(isset($row['user_lastname'])){ print_r($row['user_lastname']);}?></td>
-                <td><?php  if(isset($row['user_email'])){ print_r($row['user_email']);}?></td>
-                <td><?php  if(isset($row['role'])){ print_r($row['role']);}?></td>
-                <td><a href="edit_subAdmin.php?id=<?php echo $row['user_id'];?>">Edit</a></td>
-                <td><a href="delete_subAdmin.php?id=<?php echo $row['user_id'];?>">Delete</a></td>        
-            </tr>
-        <?php
-
-        ?>
-        <?php
-            }
+        return $stmt;
         }        
-    }
-
+    
 
     function add_subAdmin($fname, $lname, $email, $password){
         try{
