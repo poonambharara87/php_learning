@@ -34,17 +34,33 @@ if(isset($_POST['submit'])){
             <form action="add_subAdmin.php" method="post" id="form-container">
                 <label for="fname" class="labelStyle text-color">First Name</label>
                 <input type="text" name="fname" class="inputStyle text-color">
-
+            <?php
+                    if(!empty($_SESSION['ErrorSubAd']['fname'])){
+                        echo "<p class='message'> " . $_SESSION['ErrorSubAd']['fname'] . "</p>";   
+                    }
+            ?>
                 <label for="lname" class="labelStyle text-color">Second Name</label>
                 <input type="text" name="lname" class="inputStyle text-color">
-                <?php   
+                <?php 
+                                    if(!empty($_SESSION['ErrorSubAd']['lname'])){
+                                        echo "<p class='message'> " . $_SESSION['ErrorSubAd']['lname'] . "</p>";   
+                                    }  
                 ?> 
                 <label for="email" class="labelStyle text-color">Email</label>
                 <input type="email" name="email" class="inputStyle text-color">
                 <?php   
+                                    if(!empty($_SESSION['ErrorSubAd']['email'])){
+                                        echo "<p class='message'> " . $_SESSION['ErrorSubAd']['email'] . "</p>";   
+                                    }
                 ?>                
                 <label for="passwod" class="labelStyle text-color">Password</label>
                 <input type="password" name="password" class="inputStyle text-color passInput">
+                <?php   
+                                    if(!empty($_SESSION['ErrorSubAd']['password'])){
+                                        echo "<p class='message'> " . $_SESSION['ErrorSubAd']['password'] . "</p>";  
+                                        $_SESSION['ErrorSubAd'] = []; 
+                                    }
+                ?>                
                 <button type="submit" name="submit" class="btn-submit">SUBMIT</button>
             </form>
         </div>

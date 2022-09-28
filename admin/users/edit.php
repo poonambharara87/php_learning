@@ -11,7 +11,6 @@ if(isset($_GET['id'])){
 
     if(isset($_POST['update'])){
         $users = new users($db);
-        print_r($_POST);
         $users->edit($_POST);
     }
 }
@@ -47,19 +46,35 @@ if(isset($_GET['id'])){
             <form action="edit.php?id=<?php echo $result->user_id; ?>" method="post" id="form-container">
 
                 <input type="hidden" name="id" value="<?php echo $result->user_id; ?>">
+
                 <label for="fname" class="labelStyle text-color">First Name</label>
                 <input type="text" name="fname" value="<?php echo $result->user_firstname; ?>" class="inputStyle text-color">
-
+                <?php
+                    if(!empty($_SESSION['editError']['fname'])){
+                        echo "<span class='message'> " . $_SESSION['editError']['fname'] . "</span>";
+                    }
+                ?>
                 <label for="lname" class="labelStyle text-color">Second Name</label>
                 <input type="text" name="lname" value="<?php echo $result->user_lastname; ?>" class="inputStyle text-color">
-                <?php   
-                ?> 
+                <?php
+                    if(!empty($_SESSION['editError']['lname'])){
+                        echo "<span class='message'> " . $_SESSION['editError']['lname'] . "</span>";
+                    }
+                ?>
                 <label for="email" class="labelStyle text-color">Email</label>
                 <input type="email" name="email" value="<?php echo $result->user_email; ?>" class="inputStyle text-color">
-                <?php   
-                ?>                
+                <?php
+                    if(!empty($_SESSION['editError']['email'])){
+                        echo "<span class='message'> " . $_SESSION['editError']['email'] . "</span>";
+                    }
+                ?>               
                 <label for="passwod" class="labelStyle text-color">Password</label>
                 <input type="password" name="password" value="<?php echo $result->user_password; ?>"class="inputStyle text-color passInput">
+                <?php
+                    if(!empty($_SESSION['editError']['password'])){
+                        echo "<span class='message'> " . $_SESSION['editError']['password'] . "</span>";
+                    }
+                ?>
                 <button type="submit" name="update" class="btn-submit">Update</button>
             </form>
         </div>

@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
                         }
 
                 ?>               
-                <button type="submit" name="submit" class="btn-submit text-color">SUBMIT</button>
+                <button type="submit" name="submit" class="btn-submit">SUBMIT</button>
             </form>
             <p> 
                 <?php if(!empty($_SESSION['deactive'])){

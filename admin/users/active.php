@@ -10,8 +10,8 @@ if(isset($_GET['id'])){
         ];
     $queryExcuted = $stmt->execute($data);
     if($queryExcuted){
-        header("location:../users.php");
+        header("location:../users/users.php");
     } 
 }else{
-    header("location:../user.php");
+    header("location:..users/users.php");
 }

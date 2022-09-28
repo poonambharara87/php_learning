@@ -29,7 +29,7 @@ $blogs = new blogs($db);
                     <th>ID</th>
                     <th>Tittle</th>
                     <th>Description</th>
-                    <th>Image</th> 
+
                     <th>Content</th>  
                     <th>Status</th>                      
                     <th colspan="3">Action</th>
@@ -49,8 +49,7 @@ $blogs = new blogs($db);
                                         <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
                                         <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
                                         <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
-                                        <td><img  src="<?php  if(isset($row['blog_imgSource'])){ print_r($row['blog_imgSource']);}?>" alt="Blog Image"
-                                        height="50px" width="50px"></td>
+
                                         <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
                                         <td>Deactivate</td>
                                         <td><a href="activeBlog.php?id=<?php echo $row['blog_id'];?>">Active</a></td>
@@ -69,8 +68,7 @@ $blogs = new blogs($db);
                                         <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
                                         <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
                                         <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
-                                        <td><img  src="<?php  if(isset($row['blog_imgSource'])){ print_r($row['blog_imgSource']);}?>" alt="Blog Image"
-                                        height="50px" width="50px"></td>
+                                
                                         <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
                                         <td>Activate</td>
                                         <td><a href="deactivateBlog.php?id=<?php echo $row['blog_id'];?>">Deactive</a></td>

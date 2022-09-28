@@ -54,50 +54,86 @@ class admin{
     
 
     function add_subAdmin($fname, $lname, $email, $password){
-        try{
-            $addstmt = $this->db->prepare("insert into users(user_firstname, user_lastname,
-            user_email, user_password, role) values(:fname, :lname, :email, :password, 2)");
-            $addstmt->bindparam(":fname", $fname);
-            $addstmt->bindparam(":lname", $lname);
-            $addstmt->bindparam(":email", $email);
-            $addstmt->bindparam(":password", $password);
-            $addstmt->execute();
-            header("location:subAdmins.php");
-        }catch(Exception $ex){
-            echo $ex->getMessage();
-        }          
+        $ErrorSubAd = array();
+        if(empty($fname)){
+          $ErrorSubAd['fname'] = "Fname is required";  
+        }if(empty($lname)){
+            $ErrorSubAd['lname'] = "Lname is required";
+        }if(empty($email)){
+            $ErrorSubAd['email'] = "Email is required";
+        }if(empty($lname)){
+            $ErrorSubAd['password'] = "Password is required";
+        }if(!empty($ErrorSubAd)){
+            $_SESSION['ErrorSubAd'] = $ErrorSubAd;
+            
+        }else{
+            if(!empty($_SESSION['ErrorSubAd'])){
+                unset($_SESSION['ErrorSubAd']);
+            }
+            try{
+                $addstmt = $this->db->prepare("insert into users(user_firstname, user_lastname,
+                user_email, user_password, role) values(:fname, :lname, :email, :password, 2)");
+                $addstmt->bindparam(":fname", $fname);
+                $addstmt->bindparam(":lname", $lname);
+                $addstmt->bindparam(":email", $email);
+                $addstmt->bindparam(":password", $password);
+                $addstmt->execute();
+                header("location:subAdmins.php");
+            }catch(Exception $ex){
+                echo $ex->getMessage();
+            }   
+        }       
     }
 
 
     public function edit_subAdmin($editedData){
-        
-        $id = $editedData['id'];
-        $fname = $editedData['fname']; 
-        $lname = $editedData['lname']; 
-        $email = $editedData['email']; 
-        $password = $editedData['password']; 
-        
-        try{
-            $query = "UPDATE users SET 
-            user_firstname=:fname,
-            user_lastname=:lname,
-            user_email=:email,
-            user_password=:password WHERE user_id=:id LIMIT 1";
-            $stmt = $this->db->prepare($query);
-            $data = [
-                ':fname' => $fname,
-                ':lname' => $lname,
-                ':email' => $email,
-                ':password' => $password,
-                ':id'      => $id
-            ];
-            $query_executed = $stmt->execute($data);
-            if($query_executed){
-                header("location:subAdmins.php");
+        $subAdError = array();
+        if(empty($editedData['fname'])){
+           $subAdError['fname'] = "fname is required";
+        } 
+        if(empty($editedData['lname'])){
+            $subAdError['lname'] = "lname is required";
+         } 
+        if(empty($editedData['email'])){
+            $subAdError['email'] = "email is required";
+         } 
+        if(empty($editedData['password'])){
+            $subAdError['password'] = "password is required";
+         }
+        if(!empty($subAdError)){
+            $_SESSION['subAdError'] = $subAdError;
+        }else{
+            if(!empty($editedData)){
+                unset($_SESSION['subAdError']);
             }
-            
-        }catch(Exception $excep){
-            $excep->getMessage();
+            $id = $editedData['id'];
+            $fname = $editedData['fname']; 
+            $lname = $editedData['lname']; 
+            $email = $editedData['email']; 
+            $password = $editedData['password']; 
+        
+            try{
+                $query = "UPDATE users SET 
+                user_firstname=:fname,
+                user_lastname=:lname,
+                user_email=:email,
+                user_password=:password WHERE user_id=:id LIMIT 1";
+                $stmt = $this->db->prepare($query);
+                $data = [
+                    ':fname' => $fname,
+                    ':lname' => $lname,
+                    ':email' => $email,
+                    ':password' => $password,
+                    ':id'      => $id
+                ];
+                $query_executed = $stmt->execute($data);
+                if($query_executed){
+                    header("location:subAdmins.php");
+                }
+                
+            }catch(Exception $excep){
+                $excep->getMessage();
+            }
         }
     }
 

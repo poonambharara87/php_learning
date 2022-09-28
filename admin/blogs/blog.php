@@ -34,14 +34,11 @@ if(isset($_POST['submit'])){
                 <label for="lname" class="labelStyle text-color">Description</label>
                 <input type="text" name="description" class="inputStyle text-color">
 
-                <label for="file" class="labelStyle text-color">Image File</label>
-                <input type="file" name="uploadFile" class="inputStyle text-color fstyle">
-              
                 <label for="file" class="labelStyle text-color">Content</label>
                 <textarea name="content" rows="10" cols="50" minlength="10" maxlength="150"
                  class="inputStyle text-color"></textarea>
-                 
-                <button type="submit" name="submit" value="submit" class="btn-submit text-color">SUBMIT</button>
+
+                <button type="submit" name="submit" value="submit" class="btn-submit">SUBMIT</button>
             </form>
         </div>
     </body>

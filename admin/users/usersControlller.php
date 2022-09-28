@@ -26,7 +26,7 @@ class users{
             }
             $stmt = $this->db_conn->query('SELECT * FROM users WHERE role = 3'); //stmt object
             // while($row = $stmt->fetch()){ //here stmt return array
-
+            
             while($row = $stmt->fetch(PDO::FETCH_OBJ)){ //pram returns static class object
             echo "<pre>";
             if($row->user_email == $data['email']
@@ -63,13 +63,13 @@ class users{
             
             $error = array();
             
-            if(empty($_POST['fname'])){
+            if(empty($fname)){
                 $error['fname'] = "Please fill the Firstname";
-            }if(empty($_POST['lname'])){
+            }if(empty($lname)){
                 $error['lname'] = "Please fill the Lastname";
-            }if(empty($_POST['email'])){
+            }if(empty($email)){
                 $error['email'] = "Please fill the email";
-            }if(empty($_POST['password'])){
+            }if(empty($password)){
                 $error['password'] = "Please fill the password";
             }
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -77,6 +77,7 @@ class users{
             }
             if(!empty($error)){
                 $_SESSION['error'] = $error;
+                return $_SESSION['error'];
                 header("location:add_user.php");
             }else{
                 if(!empty($_SESSION['error'])){
@@ -103,34 +104,50 @@ class users{
 
 
     public function edit($editedData){
-        
-            $id = $editedData['id'];
-            $fname = $editedData['fname']; 
-            $lname = $editedData['lname']; 
-            $email = $editedData['email']; 
-            $password = $editedData['password']; 
-            
-            try{
-                $query = "UPDATE users SET 
-                user_firstname=:fname,
-                user_lastname=:lname,
-                user_email=:email,
-                user_password=:password WHERE user_id=:id LIMIT 1";
-                $stmt = $this->db_conn->prepare($query);
-                $data = [
-                    ':fname' => $fname,
-                    ':lname' => $lname,
-                    ':email' => $email,
-                    ':password' => $password,
-                    ':id'      => $id
-                ];
-                $query_executed = $stmt->execute($data);
-                if($query_executed){
-                    header("location:users.php");
+            $editError = array();          
+            if(empty($editedData['fname'])){
+                $editError['fname'] = "fname is required";
+            }if(empty($editedData['lname'])){
+                $editError['lname'] = "lname is required";
+            }if(empty($editedData['email'])){
+                $editError['email'] = "email is required";
+            }if(empty($editedData['password'])){
+                $editError['password'] = "password is required";
+            }
+            if(!empty($editError)){
+                $_SESSION['editError'] = $editError;               
+            }
+            else{
+                if(!empty($editError)){
+                    unset($_SESSION['editError']);
                 }
-                
-            }catch(Exception $excep){
-                $excep->getMessage();
+                $id = $editedData['id'];
+                $fname = $editedData['fname']; 
+                $lname = $editedData['lname']; 
+                $email = $editedData['email']; 
+                $password = $editedData['password']; 
+                try{
+                    $query = "UPDATE users SET 
+                    user_firstname=:fname,
+                    user_lastname=:lname,
+                    user_email=:email,
+                    user_password=:password WHERE user_id=:id LIMIT 1";
+                    $stmt = $this->db_conn->prepare($query);
+                    $data = [
+                        ':fname' => $fname,
+                        ':lname' => $lname,
+                        ':email' => $email,
+                        ':password' => $password,
+                        ':id'      => $id
+                    ];
+                    $query_executed = $stmt->execute($data);
+                    if($query_executed){
+                        header("location:users.php");
+                    }
+                    
+                }catch(Exception $excep){
+                    $excep->getMessage();
+                }
             }
         }
 

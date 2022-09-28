@@ -50,18 +50,35 @@ if(isset($_GET['id'])){
                 <input type="hidden" name="id" value="<?php echo $result->user_id; ?>">
                 <label for="fname" class="labelStyle text-color">First Name</label>
                 <input type="text" name="fname" value="<?php echo $result->user_firstname; ?>" class="inputStyle text-color">
+                <?php
+                    if(!empty($_SESSION['subAdError']['fname'])){
+                        echo "<span class='message'> " . $_SESSION['subAdError']['fname'] . "</span>";
+                    }
+                ?>
 
                 <label for="lname" class="labelStyle text-color">Second Name</label>
                 <input type="text" name="lname" value="<?php echo $result->user_lastname; ?>" class="inputStyle text-color">
-                <?php   
-                ?> 
+                <?php
+                    if(!empty($_SESSION['subAdError']['lname'])){
+                        echo "<span class='message'> " . $_SESSION['subAdError']['lname'] . "</span>";
+                    }
+                ?>
                 <label for="email" class="labelStyle text-color">Email</label>
                 <input type="email" name="email" value="<?php echo $result->user_email; ?>" class="inputStyle text-color">
-                <?php   
-                ?>                
+                <?php
+                    if(!empty($_SESSION['subAdError']['email'])){
+                        echo "<span class='message'> " . $_SESSION['subAdError']['email'] . "</span>";
+                    }
+                ?>               
                 <label for="passwod" class="labelStyle text-color">Password</label>
                 <input type="password" name="password" value="<?php echo $result->user_password; ?>"class="inputStyle text-color passInput">
-                <button type="submit" name="update" class="btn-submit text-color">Update</button>
+                <?php
+                    if(!empty($_SESSION['subAdError']['password'])){
+                        echo "<span class='message'> " . $_SESSION['subAdError']['password'] . "</span>";
+                        $_SESSION['subAdError'] = [];
+                    }
+                ?>
+                <button type="submit" name="update" class="btn-submit ">Update</button>
             </form>
         </div>
     </body>

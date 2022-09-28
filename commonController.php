@@ -10,13 +10,13 @@ class Users{
             
         $error = array();
         
-        if(empty($_POST['fname'])){
+        if(empty($fname)){
             $error['fname'] = "Please fill the Firstname";
-        }if(empty($_POST['lname'])){
+        }if(empty($lname)){
             $error['lname'] = "Please fill the Lastname";
-        }if(empty($_POST['email'])){
+        }if(empty($email)){
             $error['email'] = "Please fill the email";
-        }if(empty($_POST['password'])){
+        }if(empty($password)){
             $error['password'] = "Please fill the password";
         }
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){

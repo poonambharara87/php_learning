@@ -34,9 +34,9 @@ if(isset($_POST['submit'])){
                 <label for="fname" class="labelStyle text-color">First Name</label>
                 <input type="text" name="fname" class="inputStyle text-color">
                 <?php
-                if(!empty($_SESSION['error']['fname'])){
-                    echo "<p class='message'> " . $_SESSION['error']['fname'] . "</p>";
-                }
+                    if(!empty($_SESSION['error']['fname'])){
+                        echo "<p class='message'> " . $_SESSION['error']['fname'] . "</p>";
+                    }
                 ?>
                 <label for="lname" class="labelStyle text-color">Last Name</label>
                 <input type="text" name="lname" class="inputStyle text-color">

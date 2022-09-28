@@ -14,76 +14,55 @@ class blogs{
     }
 
     public function add_blog($blogFormData){
-
         $tittle = $blogFormData['tittle'];
         $description = $blogFormData['description'];
         $content = $blogFormData['content'];
 
-        if(isset($_FILES['uploadFile'])){
-    
-            $filename = $_FILES['uploadFile']['name'];
-            $tempname = $_FILES['uploadFile']['tmp_name'];
-            $folder = "blogImgs/" . $filename;
-
-            move_uploaded_file($tempname, $folder);
-            // echo "<img height='100px' width='100px' src='$folder'>";
-        }
-
         try{
             $stmt = $this->db->prepare("insert into blogs(blog_tittle, blog_description,
-            blog_imgSource, content) values(:tittle, :description, :uploadFile, :content)");
+             content) values(:tittle, :description, :content)");
             $stmt->bindparam(":tittle", $tittle);
             $stmt->bindparam(":description", $description);
-            $stmt->bindparam(":uploadFile", $folder);
             $stmt->bindparam(":content", $content);
             $stmt->execute();
-            // header("location:blogs.php");
+            header("location:blogs.php");
         }catch(Exception $ex){
             echo $ex->getMessage();
         }
+    
     }
 
     public function edit_blog($editedBlogData){
-
-        $id = $editedBlogData['id'];
-        $tittle = $editedBlogData['tittle'];
-        $description = $editedBlogData['description'];
-
-        if(isset($_FILES['uploadFile'])){
-    
-            $filename = $_FILES['uploadFile']['name'];
-            $tempname = $_FILES['uploadFile']['tmp_name'];
-            $folder = "blogImgs/" . $filename;
-
-            move_uploaded_file($tempname, $folder);
-            // echo "<img height='100px' width='100px' src='$folder'>";
-        }        
-        $content = $editedBlogData['content']; 
-        
-        try{
-            $query = "UPDATE blogs SET 
-            blog_id=:id,
-            blog_tittle=:tittle,
-            blog_description=:descript,
-            blog_imgSource=:folder,
-            content=:content WHERE blog_id=:id LIMIT 1";
-            $stmt = $this->db->prepare($query);
-            $data = [
-                ':id'      => $id,
-                ':tittle' => $tittle,
-                ':descript' => $description,
-                ':folder' => $folder,
-                ':content' => $content
-
-            ];
-            $query_executed = $stmt->execute($data);
-            if($query_executed){
-                header("location:blogs.php");
-            }
+                
+            $id = $editedBlogData['id'];
+            $tittle = $editedBlogData['tittle'];
+            $description = $editedBlogData['description'];     
+            $content = $editedBlogData['content']; 
             
-        }catch(Exception $excep){
-            $excep->getMessage();
-        }
+            try{
+                $query = "UPDATE blogs SET   
+                blog_tittle=:tittle,
+                blog_description=:descript,
+                content=:content
+                WHERE blog_id=:id LIMIT 1";
+                $stmt = $this->db->prepare($query);
+                $data = [
+                    ':id'      => $id,
+                    ':tittle' => $tittle,
+                    ':descript' => $description,
+                    ':content' => $content
+                ];
+
+                $query_executed = $stmt->execute($data);
+                if($query_executed){
+                    header("location:blogs.php");
+                }
+               
+            }catch(Exception $excep){
+                return $query_executed;
+                $excep->getMessage();
+            }
+
     }
   
     
