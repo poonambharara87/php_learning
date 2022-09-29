@@ -30,14 +30,26 @@ if(isset($_POST['submit'])){
             <form action="blog.php" method="post" id="form-container" enctype="multipart/form-data">
                 <label for="fname" class="labelStyle text-color">Tittle</label>
                 <input type="text" name="tittle" class="inputStyle text-color">
-
+                <?php
+                        if(!empty($_SESSION['blogValid']['tittle'])){
+                            echo "<span class='message'> " . $_SESSION['blogValid']['tittle'] . "</span>";                        
+                        }
+                ?>
                 <label for="lname" class="labelStyle text-color">Description</label>
                 <input type="text" name="description" class="inputStyle text-color">
-
+                <?php
+                        if(!empty($_SESSION['blogValid']['description'])){
+                            echo "<span class='message'> " . $_SESSION['blogValid']['description'] . "</span>";              
+                        }
+                ?>
                 <label for="file" class="labelStyle text-color">Content</label>
                 <textarea name="content" rows="10" cols="50" minlength="10" maxlength="150"
                  class="inputStyle text-color"></textarea>
-
+                 <?php
+                        if(!empty($_SESSION['blogValid']['content'])){
+                            echo "<span class='message'> " . $_SESSION['blogValid']['content'] . "</span>";          
+                        }
+                ?>
                 <button type="submit" name="submit" value="submit" class="btn-submit">SUBMIT</button>
             </form>
         </div>

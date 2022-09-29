@@ -14,6 +14,17 @@ class blogs{
     }
 
     public function add_blog($blogFormData){
+        $blogValid = array();
+        if(empty($blogFormData['tittle'])){
+            $blogValid['tittle'] = "Tittle is required";
+        }if(empty($blogFormData['description'])){
+            $blogValid['description'] = "Description is required";
+        }if(empty($blogFormData['content'])){
+            $blogValid['content'] = "Content is required";
+        }
+        if(!empty($blogValid)){
+            $_SESSION['blogValid'] = $blogValid;
+        }else{
         $tittle = $blogFormData['tittle'];
         $description = $blogFormData['description'];
         $content = $blogFormData['content'];
@@ -29,39 +40,50 @@ class blogs{
         }catch(Exception $ex){
             echo $ex->getMessage();
         }
-    
+    }
     }
 
     public function edit_blog($editedBlogData){
+            $eBlogError = array();
+            if(empty($editedBlogData['tittle'])){
+                $eBlogError['tittle'] = "Tittle is required";
+            }if(empty($editedBlogData['description'])){
+                $eBlogError['description'] = "description is required";
+            }if(empty($editedBlogData['content'])){
+                $eBlogError['content'] = "Content is required";
+            }if(!empty($eBlogError)){
+                $_SESSION['eBlogError'] = $eBlogError;
+            }else{
+                $id = $editedBlogData['id'];
+                $tittle = $editedBlogData['tittle'];
+                $description = $editedBlogData['description'];     
+                $content = $editedBlogData['content']; 
                 
-            $id = $editedBlogData['id'];
-            $tittle = $editedBlogData['tittle'];
-            $description = $editedBlogData['description'];     
-            $content = $editedBlogData['content']; 
-            
-            try{
-                $query = "UPDATE blogs SET   
-                blog_tittle=:tittle,
-                blog_description=:descript,
-                content=:content
-                WHERE blog_id=:id LIMIT 1";
-                $stmt = $this->db->prepare($query);
-                $data = [
-                    ':id'      => $id,
-                    ':tittle' => $tittle,
-                    ':descript' => $description,
-                    ':content' => $content
-                ];
+                try{
+                    $query = "UPDATE blogs SET   
+                    blog_tittle=:tittle,
+                    blog_description=:descript,
+                    content=:content
+                    WHERE blog_id=:id LIMIT 1";
+                    $stmt = $this->db->prepare($query);
+                    $data = [
+                        ':id'      => $id,
+                        ':tittle' => $tittle,
+                        ':descript' => $description,
+                        ':content' => $content
+                    ];
 
-                $query_executed = $stmt->execute($data);
-                if($query_executed){
-                    header("location:blogs.php");
+                    $query_executed = $stmt->execute($data);
+                    var_dump($query_executed);
+                    if($query_executed){
+                        header("location:blogs.php");
+                    }
+                
+                }catch(Exception $excep){
+                    return $query_executed;
+                    $excep->getMessage();
                 }
-               
-            }catch(Exception $excep){
-                return $query_executed;
-                $excep->getMessage();
-            }
+        }
 
     }
   

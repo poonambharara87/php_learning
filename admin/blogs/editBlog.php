@@ -11,6 +11,7 @@ if(isset($_GET['id'])){
     if(isset($_POST['update'])){
         $blogs = new blogs($db);
         $blogs->edit_blog($_POST); 
+
     }
 }
 
@@ -22,8 +23,10 @@ if(isset($_GET['id'])){
     $data = [':id' => $id];
     $stmt->execute($data);
 
-   // $result = $stmt->fetch(PDO::FETCH_OBJ); 
-    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+    $result = $stmt->fetch(PDO::FETCH_OBJ); 
+    
+    // $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+    
     
 }else{
     header("location:blogs.php");
@@ -42,34 +45,35 @@ if(isset($_GET['id'])){
         <div id="main-containerEblog">
             <h1 class="eblogHead">Edit Blog</h1>
             
-            <form action="editBlog.php?id='<?php echo $result['blog_id']; ?>'" method="post" id="form-containerEblog" enctype="multipart/form-data">
+            <form action="editBlog.php?id=<?php echo $result->blog_id; ?>" method="post" id="form-containerEblog" enctype="multipart/form-data">
  
-            <input type="hidden" name="id" value="<?php echo $result['blog_id']; ?>" class="inputStyleEblog text-colorEblog"/>            
+            <input type="hidden" name="id" value="<?php echo $result->blog_id; ?>" class="inputStyleEblog text-colorEblog"/>            
                 <label for="tittle" class="labelStyleEblog text-colorEblog">Tittle</label>
-                <input type="text" name="tittle" value="<?php echo $result['blog_tittle']; ?>" class="inputStyleEblog text-colorEblog"/>
+                <input type="text" name="tittle" value="<?php echo $result->blog_tittle; ?>" class="inputStyleEblog text-colorEblog"/>
 
                 <?php 
-                    if(!empty($_SESSION['BlogError']['tittle'])){
-                        echo "<span class='message'> " . $_SESSION['BlogError']['tittle'] . "</span>";
+                    if(!empty($_SESSION['eBlogError']['tittle'])){
+                        echo "<span class='message'> " . $_SESSION['eBlogError']['tittle'] . "</span>";
                     }
                 ?>  
 
                 <label for="description" class="labelStyleEblog text-colorEblog">Description</label>
-                <input type="text" name="description" value="<?php echo $result['blog_description']; ?>"  class="inputStyleEblog text-colorEblog"/>
+                <input type="text" name="description" value="<?php echo $result->blog_description; ?>"  class="inputStyleEblog text-colorEblog"/>
 
                 <?php 
-                    if(!empty($_SESSION['BlogError']['description'])){
-                        echo "<span class='message'> " . $_SESSION['BlogError']['description'] . "</span>";
+                 
+                    if(!empty($_SESSION['eBlogError']['description'])){
+                        echo "<span class='message'> " .$_SESSION['eBlogError']['description'] . "</span>";
                     }
                 ?>
 
 
                 <label for="content" class="labelStyleEblog text-colorEblog">Content</label>
                 <textarea name="content" rows="10" cols="50" minlength="10" maxlength="150"
-                 class="inputStyleEblog text-colorEblog"><?php echo $result['content']; ?></textarea>
+                 class="inputStyleEblog text-colorEblog"><?php echo $result->content; ?></textarea>
                  <?php 
-                    if(!empty($_SESSION['BlogError']['content'])){
-                        echo "<span class='message'> " . $_SESSION['BlogError']['content'] . "</span>";
+                    if(!empty($_SESSION['eBlogError']['content'])){
+                        echo "<span class='message'> " .$_SESSION['eBlogError']['content'] . "</span>";
                     }
                 ?>
                 <button type="submit" name="update"  class="btn-submitEblog text-colorEblog">Update</button>
