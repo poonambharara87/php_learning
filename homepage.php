@@ -37,11 +37,24 @@ include 'config.php';
                     
                     <h2><?php echo $row['blog_description']; ?></h2>
 
-                    <img src="<?php echo $row['blog_imgSource']; ?>" />
-
-                    <p><?php echo $row['content']; ?></p> 
-
-
+                    <p><?php echo $row['content']; ?></p>                    
+                    <?php
+                        $user_id = $_SESSION['user_id'];
+                        $queryLikedOrNot = "select likeStatus from likes WHERE user_id = $user_id
+                                            and blog_id = $id";
+                        $stmt1 = $db->query($queryLikedOrNot);
+                        $record = $stmt1->fetch(PDO::FETCH_ASSOC);
+                        if($record == 0){
+                            ?>
+                            <button><a href="like.php?id=<?php echo $row['blog_id'];?>" class="logout-link">Like</a></button>
+                        <?php
+                        }else{
+                            ?>
+                            <button><a href="dislike.php?id=<?php echo $row['blog_id'];?>" class="logout-link">Disike</a></button> 
+                        <?php
+                        }
+                    ?>
+    
                     <p style="border-bottom:2px solid gray;"></p>
                 </div>
 

@@ -2,11 +2,11 @@
 
 require '../../config.php';
 include 'usersControlller.php';
-// if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
+if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin']) && isset($_GET['id'])){
 
-// }else{
-//     header("location:../admin_login.php");
-// } 
+}else{
+    header("location:../admin_login.php");
+} 
 if(isset($_GET['id'])){
 
     if(isset($_POST['update'])){
@@ -14,7 +14,6 @@ if(isset($_GET['id'])){
         $users->edit($_POST);
     }
 }
-
 
 //To show data in form
 if(isset($_GET['id'])){
@@ -26,6 +25,9 @@ if(isset($_GET['id'])){
     $stmt->execute($data);
 
     $result = $stmt->fetch(PDO::FETCH_OBJ); 
+    if($result == false){
+        header("location:users.php");
+    }
     // $result = $stmt->fetch(PDO::FETCH_ASSOC); echo $result['user_firstname'] 
 }
 

@@ -14,7 +14,7 @@ $blogs = new blogs($db);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>All Users </title>
+        <title>All Blogs </title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/style.css">

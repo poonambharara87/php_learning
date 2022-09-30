@@ -2,16 +2,15 @@
 
 require '../../config.php';
 include 'blogController.php';
-// if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
+if(isset($_SESSION['admin']) && isset($_GET['id']) || isset($_SESSION['sub_admin']) ){
 
-// }else{
-//     header("location:admin_login.php");
-// } 
+}else{
+    header("location:../admin_login.php");
+} 
 if(isset($_GET['id'])){
     if(isset($_POST['update'])){
         $blogs = new blogs($db);
         $blogs->edit_blog($_POST); 
-
     }
 }
 
@@ -24,12 +23,10 @@ if(isset($_GET['id'])){
     $stmt->execute($data);
 
     $result = $stmt->fetch(PDO::FETCH_OBJ); 
-    
+    if($result == false){
+        header("location:blogs.php");
+    }
     // $result = $stmt->fetch(PDO::FETCH_ASSOC); 
-    
-    
-}else{
-    header("location:blogs.php");
 }
 ?>
 <!DOCTYPE html>
@@ -60,8 +57,7 @@ if(isset($_GET['id'])){
                 <label for="description" class="labelStyleEblog text-colorEblog">Description</label>
                 <input type="text" name="description" value="<?php echo $result->blog_description; ?>"  class="inputStyleEblog text-colorEblog"/>
 
-                <?php 
-                 
+                <?php     
                     if(!empty($_SESSION['eBlogError']['description'])){
                         echo "<span class='message'> " .$_SESSION['eBlogError']['description'] . "</span>";
                     }

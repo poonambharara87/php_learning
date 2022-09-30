@@ -1,5 +1,10 @@
 <?php
 include 'config.php';
+if(isset($_SESSION)){
+
+}else{
+    session_start();
+}
 class Users{
     private $db_conn;
 
@@ -69,8 +74,7 @@ class Users{
 
                 if($row->status == 1){ 
                     $_SESSION['user'] = $user;
-                    $uid = $row->user_id;
-                    $_SESSION['user_id'] = $uid;
+                    $_SESSION['user_id'] = $row->user_id;;
                     header('location:homepage.php');
                 }else{ 
                     $_SESSION['Invalid'] = [];                                 
@@ -86,5 +90,13 @@ class Users{
         }       
     }
  
+   function blog_like($id){
+        $userIdey = $_SESSION['user_id'];       
+        $blog_id = $id;
 
+        $query = "SELECT * FROM likes WHERE user_id = $userIdey and blog_id = $blog_id";
+        $stmt = $this->db_conn->query($query);
+        $stmt=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt;
+    }
 }

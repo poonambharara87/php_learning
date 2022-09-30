@@ -1,9 +1,12 @@
 <?php
-
-session_start();
 include '../../config.php';
-
 include '../adminController.php';
+
+if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
+    
+}else{
+    header("location:../admin_login.php");
+}
 
 $admin = new admin(null, $db);
 ?>
@@ -11,7 +14,7 @@ $admin = new admin(null, $db);
 <!DOCTYPE html>
 <html>
     <head>
-        <title>All Users </title>
+        <title>All Sub-Admins</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/style.css">

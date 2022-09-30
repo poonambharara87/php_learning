@@ -4,11 +4,11 @@ include '../../config.php';
 
 include '../adminController.php';
 
-// if(isset($_SESSION['admin'])){
+if(isset($_SESSION['admin']) && isset($_GET['id'])){
 
-// }else{
-//     header("location:../admin_login.php");
-// } 
+}else{
+    header("location:../admin_login.php");
+} 
 if(isset($_GET['id'])){
 
     if(isset($_POST['update'])){
@@ -24,11 +24,15 @@ if(isset($_GET['id'])){
     $admin = new admin(null, $db);
     $query = "select * from users where user_id = :id LIMIT 1";
     $stmt = $db->prepare($query);
+
     $data = [':id' => $id];
     $stmt->execute($data);
-
-    $result = $stmt->fetch(PDO::FETCH_OBJ); 
-    // $result = $stmt->fetch(PDO::FETCH_ASSOC); echo $result['user_firstname'] 
+    $result = $stmt->fetch(PDO::FETCH_OBJ);
+       
+    if($result == false){
+        header("location:subAdmins.php");
+    }
+    //$result = $stmt->fetch(PDO::FETCH_OBJ); 
 }
 
 

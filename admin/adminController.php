@@ -17,16 +17,14 @@ class admin{
     function Login(){  
         $admin = array();
         $sub_admin = array();
-
-        
+       
             if(empty($this->addFormdata['email'])){
                 $_SESSION['emailLogin'] = "Email is required for login";
                 if(empty($this->adminFormdata['password'])){
                     $_SESSION['passwordLogin'] = "Password is required for login";
                 }
             } 
-
-            
+          
             $stmt = $this->db->query('SELECT * FROM users WHERE role = 1 or 2'); //stmt object
             // while($row = $stmt->fetch()){ //here stmt return array
 
@@ -34,15 +32,19 @@ class admin{
                 echo "<pre>";
                 if($row->user_email == $this->adminFormdata['email']
                     && $row->user_password == $this->adminFormdata['password']){
-                        $_SESSION['admin'] = $admin;
-                        $_SESSION['sub_admin'] = $sub_admin;
+                                        
+                        if($row->role == 1){
+                            $_SESSION['admin'] = "admin";
+                        }
+                        elseif($row->role == 2){
+                            $_SESSION['sub_admin'] =  "Subadmin";
+                        }
                     header('location:admin_panel.php');
                 }else{    
 
                     header('admin_login.php');
                         
-                }
-               
+                }    
         }
 }
 
@@ -139,11 +141,14 @@ class admin{
 
     public function delete_subAdmin($id){
 
-        $stmt = $this->db->prepare("delete from users where user_id = :user_id");
-        $stmt->bindparam(":user_id", $id);
-        $stmt->execute();
-        return true;
-        
+        if(!empty($_SESSION['admin'])){
+            $stmt = $this->db->prepare("delete from users where user_id = :user_id");
+            $stmt->bindparam(":user_id", $id);
+            $stmt->execute();
+            return true;
+        }else{
+            echo "not allowed";
+        }
     }
 }
 

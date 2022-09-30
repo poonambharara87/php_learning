@@ -5,7 +5,7 @@ include '../adminController.php';
 if(isset($_SESSION['admin'])){
 
 }else{
-    header("location:subAdmins.php");
+    header("location:../admin_login.php");
 } 
 if(isset($_POST['submit'])){
     //Dsn Data Source Name  

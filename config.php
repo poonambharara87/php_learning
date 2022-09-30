@@ -1,4 +1,9 @@
 <?php
+if(isset($_SESSION)){
+
+}else{
+    session_start();
+}
 $DB_host = "localhost";
 $DB_user  = "root";
 $db_pass = "";
