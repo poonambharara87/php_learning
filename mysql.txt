@@ -1,0 +1,300 @@
+Sql Queries:
+
+Question 1--MySQL Get Current Date, User, Version
+
+
+ a) current date:
+
+	MariaDB [blog]> SELECT CURDATE();
+	+------------+
+	| CURDATE()  |
+	+------------+
+	| 2022-10-03 |
+	+------------+
+	1 row in set (0.000 sec)
+
+
+ b) Current user:
+
+	 echo get_current_user
+
+ c)Version:
+
+  	SELECT VERSION();
+
+
+Question 2 MySQL Get Maximum Value:
+
+ 	 select MAX(salary) from employees;
+
+
+Question 3 MySQL where clause:
+
+
+	$stmt = $db->query("SELECT email FROM profiles WHERE email REGEXP 'poonam|shivani'");
+
+	$row = $stmt->fetchALL(PDO::FETCH_ASSOC);
+     
+	echo "<pre>";
+	print_r($row);
+	echo "</pre>";
+
+Question 4 MySQL order by:
+
+
+MariaDB [blog]> select * from employees;
++----+--------+---------+------------------------+
+| id | name   | salary  | designation            |
++----+--------+---------+------------------------+
+|  1 | Poonam |    1000 | Social Media Executive |
+|  2 | Kamini | 2913659 | Content Writer         |
+|  3 | Sonia  | 6160230 | Content Writer         |
+|  4 | Mamta  |   22000 | Graphic designer       |
++----+--------+---------+------------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [blog]> select name from employees order by name ASC;
++--------+
+| name   |
++--------+
+| Kamini |
+| Mamta  |
+| Poonam |
+| Sonia  |
++--------+
+4 rows in set (0.000 sec)
+
+
+Question 4 MySQL get difference between two dates:
+
+MariaDB [blog]> SELECT DATEDIFF('2020-10-08 18:23:13', '2010-09-21 21:40:36') AS days;
++------+
+| days |
++------+
+| 3670 |
++------+
+1 row in set (0.000 sec)
+
+
+Question 4  MySQL Pattern Matching:
+
+
+MariaDB [blog]> SELECT * FROM employees WHERE designation LIKE 'Content%';
++----+--------+---------+----------------+
+| id | name   | salary  | designation    |
++----+--------+---------+----------------+
+|  2 | Kamini | 2913659 | Content Writer |
+|  3 | Sonia  | 6160230 | Content Writer |
++----+--------+---------+----------------+
+2 rows in set (0.000 sec)
+
+
+MariaDB [blog]> SELECT * FROM employees WHERE designation LIKE '%Executive';
++----+--------+--------+------------------------+
+| id | name   | salary | designation            |
++----+--------+--------+------------------------+
+|  1 | Poonam |   1000 | Social Media Executive |
++----+--------+--------+------------------------+
+1 row in set (0.000 sec)
+
+
+MariaDB [blog]> SELECT * FROM employees WHERE designation LIKE '%er';
++----+--------+---------+------------------+
+| id | name   | salary  | designation      |
++----+--------+---------+------------------+
+|  2 | Kamini | 2913659 | Content Writer   |
+|  3 | Sonia  | 6160230 | Content Writer   |
+|  4 | Mamta  |   22000 | Graphic designer |
++----+--------+---------+------------------+
+3 rows in set (0.001 sec)
+
+
+
+MariaDB [blog]> SELECT * FROM employees WHERE name LIKE '____a';
++----+-------+---------+------------------+
+| id | name  | salary  | designation      |
++----+-------+---------+------------------+
+|  3 | Sonia | 6160230 | Content Writer   |
+|  4 | Mamta |   22000 | Graphic designer |
++----+-------+---------+------------------+
+
+
+Question 5  MySQL Regular Expression:
+
+MariaDB [blog]> select * from employees where name REGEXP '^poonam';
++----+--------+--------+------------------------+
+| id | name   | salary | designation            |
++----+--------+--------+------------------------+
+|  1 | Poonam |   1000 | Social Media Executive |
++----+--------+--------+------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [blog]> select * from employees where name REGEXP 'ni$';
++----+--------+---------+----------------+
+| id | name   | salary  | designation    |
++----+--------+---------+----------------+
+|  2 | Kamini | 2913659 | Content Writer |
++----+--------+---------+----------------+
+
+MariaDB [blog]> SELECT email FROM profiles WHERE email REGEXP '[a-j]';
++--------------------+
+| email              |
++--------------------+
+| gurpreet@gmail.com |
+| shivani@gmail.com  |
+| poonam@gmail.com   |
++--------------------+
+3 rows in set (0.070 sec)
+
+
+Question 6 MySQL delete duplicate row:
+
+MariaDB [blog]> select * from employees order by name;
++----+--------+---------+------------------------+
+| id | name   | salary  | designation            |
++----+--------+---------+------------------------+
+|  2 | Kamini | 1200000 | Content Writer         |
+|  4 | Mamta  |  800000 | Graphic designer       |
+|  1 | Poonam |    1000 | Social Media Executive |
+|  5 | poonam |   20000 | Socail Media Executive |
+|  3 | Sonia  |  900000 | Content Writer         |
++----+--------+---------+------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [blog]> select name, COUNT(name) from employees group by name HAVING COUNT(name)>1;
++--------+-------------+
+| name   | COUNT(name) |
++--------+-------------+
+| Poonam |           2 |
++--------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [blog]> Delete c1 from employees c1 INNER JOIN employees c2 WHERE c1.id<c1.id AND
+    -> c1.name = c2.name;
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [blog]>
+
+Question 7 MySQL update multiple rows:
+
+MariaDB [blog]> update employees SET salary = (case
+    -> when name = 'Sonia' then 900000
+    -> when name = 'Mamta' then 800000
+    -> when name = 'Kamini' then 1200000
+    -> end)
+    -> WHERE name in('Sonia', 'Mamta', 'Kamini');
+Query OK, 3 rows affected (0.137 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+Question 8 Get nth highest salary using MySQL:
+
+highest
+
+MariaDB [blog]>  SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 0, 1;
++--------+---------+
+| name   | salary  |
++--------+---------+
+| Kamini | 1200000 |
++--------+---------+
+1 row in set (0.001 sec)
+
+second highest
+
+MariaDB [blog]> MariaDB [blog]>  SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 1, 1;
++-------+--------+
+| name  | salary |
++-------+--------+
+| Sonia | 900000 |
++-------+--------+
+1 row in set (0.002 sec)
+third highest
+
+MariaDB [blog]>  SELECT name, salary FROM employees ORDER BY salary DESC LIMIT 2, 1;
++-------+--------+
+| name  | salary |
++-------+--------+
+| Mamta | 800000 |
++-------+--------+
+1 row in set (0.001 sec)
+
+
+Question 9 Display the nth row from MySQl:
+
+MariaDB [blog]> SELECT * FROM employees LIMIT 1, 1;
++----+--------+---------+----------------+
+| id | name   | salary  | designation    |
++----+--------+---------+----------------+
+|  2 | Kamini | 1200000 | Content Writer |
++----+--------+---------+----------------+
+1 row in set (0.002 sec)
+
+Question 10 Commit and rollback in mysql:
+
+
+MariaDB [blog]> insert into employees
+    -> (name, salary, designation) values('Lovely', 799999, 'doctor');
+Query OK, 1 row affected (0.332 sec)
+
+MariaDB [blog]> commit;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [blog]> insert into employees
+    -> (name, salary, designation) values('Kavery', 099009, 'teacher');
+Query OK, 1 row affected (0.106 sec)
+
+
+MariaDB [blog]> delete from employees where name='Kavery';
+Query OK, 1 row affected (0.120 sec)
+
+MariaDB [blog]> ROLLBACK;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [blog]> SELECT * FROM employees;
++----+--------+---------+------------------------+
+| id | name   | salary  | designation            |
++----+--------+---------+------------------------+
+|  1 | Poonam |    1000 | Social Media Executive |
+|  2 | Kamini | 1200000 | Content Writer         |
+|  3 | Sonia  |  900000 | Content Writer         |
+|  4 | Mamta  |  800000 | Graphic designer       |
+|  5 | poonam |   20000 | Socail Media Executive |
+|  6 | Rudhvi |   89000 | Civil Servant          |
+|  7 | Lovely |  799999 | doctor                 |
++----+--------+---------+------------------------+
+7 rows in set (0.002 sec)
+
+Question 10 MySQL SELECT top 5:
+
+MariaDB [blog]> select *from employees limit 0,5;
++----+--------+---------+------------------------+
+| id | name   | salary  | designation            |
++----+--------+---------+------------------------+
+|  1 | Poonam |    1000 | Social Media Executive |
+|  2 | Kamini | 1200000 | Content Writer         |
+|  3 | Sonia  |  900000 | Content Writer         |
+|  4 | Mamta  |  800000 | Graphic designer       |
+|  5 | poonam |   20000 | Socail Media Executive |
++----+--------+---------+------------------------+
+5 rows in set (0.002 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
