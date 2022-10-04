@@ -1,0 +1,101 @@
+inner join:
+
+MariaDB [blog]> select users.id from users inner join profiles on users.id = profiles.id;
++----+
+| id |
++----+
+|  3 |
+|  4 |
++----+
+2 rows in set (0.002 sec)
+
+MariaDB [blog]> select users.id, profiles.id from users inner join profiles on users.id = profiles.id;
++----+----+
+| id | id |
++----+----+
+|  3 |  3 |
+|  4 |  4 |
++----+----+
+
+
+---------------------------------------
+MariaDB [blog]> select users.*, profiles.* from users inner join profiles on users.id = profiles.id;
++----+--------+----------+------------+----+---------+--------------------+----------+
+| id | name   | password | created    | id | user_id | email              | password |
++----+--------+----------+------------+----+---------+--------------------+----------+
+|  3 | Farhan | 29300    | 0000-00-00 |  3 |       0 | gurpreet@gmail.com | 890      |
+|  4 | Farah  | 89300    | 0000-00-00 |  4 |       0 | shivani@gmail.com  | 0987625  |
++----+--------+----------+------------+----+---------+--------------------+----------+
+2 rows in set (0.001 sec)
+
+--------------------------------------------
+
+MariaDB [blog]> describe profiles;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| user_id  | int(11)      | NO   |     | NULL    |                |
+| email    | varchar(100) | NO   |     | NULL    |                |
+| password | varchar(50)  | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0.017 sec)
+
+--------------------------------------------
+Right join:
+
+
+MariaDB [blog]> select * from users right join profiles on users.id = profiles.id
+    -> ;
++------+--------+----------+------------+----+---------+--------------------+----------+
+| id   | name   | password | created    | id | user_id | email              | password |
++------+--------+----------+------------+----+---------+--------------------+----------+
+|    3 | Farhan | 29300    | 0000-00-00 |  3 |       0 | gurpreet@gmail.com | 890      |
+|    4 | Farah  | 89300    | 0000-00-00 |  4 |       0 | shivani@gmail.com  | 0987625  |
+| NULL | NULL   | NULL     | NULL       |  5 |       0 | poonam@gmail.com   | 8973884  |
++------+--------+----------+------------+----+---------+--------------------+----------+
+3 rows in set (0.001 sec)
+
+
+-----------------------------------------------------------
+
+Left Join:
+
+MariaDB [blog]> select * from users left join profiles on users.id = profiles.id
+    -> ;
++----+---------+----------+------------+------+---------+--------------------+----------+
+| id | name    | password | created    | id   | user_id | email              | password |
++----+---------+----------+------------+------+---------+--------------------+----------+
+|  1 | Poonam  | 123423   | 0000-00-00 | NULL |    NULL | NULL               | NULL     |
+|  2 | Shivani | 98765    | 0000-00-00 | NULL |    NULL | NULL               | NULL     |
+|  3 | Farhan  | 29300    | 0000-00-00 |    3 |       0 | gurpreet@gmail.com | 890      |
+|  4 | Farah   | 89300    | 0000-00-00 |    4 |       0 | shivani@gmail.com  | 0987625  |
++----+---------+----------+------------+------+---------+--------------------+----------+
+4 rows in set (0.001 sec)
+
+
+MULTIPLE FOREIGN KEYS IN SINGLE TABLE:
+
+MariaDB [blog]> CREATE TABLE studends
+    -> (
+    -> id INT NOT NULL unique auto_increment,
+    -> name varchar(100) not null,
+    -> email varchar(100) not null unique,
+    -> city_id int null,
+    -> primary key(id),
+    -> foreign key (city_id) references cities(cid)
+    -> );
+
+
+ADDED ONE MORE COLUMN IN TABLE TO ADD FOREIGN KEY:
+
+MariaDB [blog]> alter table studends add state_id int(11);
+Query OK, 0 rows affected (0.284 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+ADDED ONE MORE FOREIGN KEY FOR ANOTHER TABLE'S DATA:
+
+MariaDB [blog]> alter table studends add foreign key (state_id) references states(s_id);
+Query OK, 5 rows affected (1.086 sec)
+Records: 5  Duplicates: 0  Warnings: 0 
