@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     </head>
     <body>
         <div id="main-container">
-        <h1>Login</h1>
+        <h1 class="mt">Login</h1>
             <form action="admin_login.php" method="post" id="form-container" style="height:260px;">
                 <label for="email" class="labelStyle text-color">Email</label>
                 <input type="email" name="email" class="inputStyle text-color">

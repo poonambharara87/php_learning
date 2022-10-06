@@ -56,10 +56,7 @@ $blogs = new blogs($db);
                                         <td><a href="editBlog.php?id=<?php echo $row['blog_id'];?>">Edit</a></td>
                                         <td><a href="deleteBlog.php?id=<?php echo $row['blog_id'];?>">Delete</a></td>        
                                     </tr>
-                    <?php
-            
-                    ?>
-                    <?php
+                            <?php
                                 } //if 
                                 else{
                     
@@ -67,8 +64,7 @@ $blogs = new blogs($db);
                                     <tr>
                                         <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
                                         <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
-                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
-                                
+                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>                                
                                         <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
                                         <td>Activate</td>
                                         <td><a href="deactivateBlog.php?id=<?php echo $row['blog_id'];?>">Deactive</a></td>

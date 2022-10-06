@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     <body>
         <div id="main-container">
 
-        <h1>Login</h1>
+        <h1 class="mt">Login</h1>
             <form action="user_login.php" method="post" id="form-container" 
                 style="width:339px; height:230px;">
                 <label for="email" class="labelStyle text-color">Email</label>

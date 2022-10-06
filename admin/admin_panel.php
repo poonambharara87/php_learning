@@ -16,7 +16,7 @@ if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
         <link rel="stylesheet" href="../css/style.css">
 
     </head>
-    <h1 style="text-align:center;">Hello, Welcome!</h1>
+    <!-- <h1 style="text-align:center;">Hello, Welcome!</h1> -->
     <div class="containerAdmin">
         
         <div id="sidebarAdmin">

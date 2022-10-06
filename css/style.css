@@ -47,12 +47,14 @@ body{
 }
 
 h1{
+    padding-top: 20px;
     text-align: center;
     font-family: sans-serif;
     font-weight: 600;
-    color: #212221;
-    margin: 5px;
+    color: #38427e;
+    margin: 0px;
     font-size: 25px;
+    /* background: linear-gradient(#87e6ea, skyblue); */
 }
 .message{
     margin: 0px;
@@ -109,24 +111,32 @@ label:first-child{
     margin-left: 25px;
     margin-bottom:10px;
 }
-
+.mt{
+    margin-bottom: 15px;
+}
 a{
     text-decoration:none;
 }
-.containerAdmin{
-    background-image: url('img/1.jpg');
-    height:1000px;
+.containerAdmin {
+    background: linear-gradient(#87ceeb, #666fde);
+    height: 625px;
 }
-#sidebarAdmin{
-    background-color:skyblue;
-    height:1200px;
-    width:300px;
+.container-box{
+
 }
-.menuAdmin{
+#sidebarAdmin {
+    background-color: skyblue;
+    height: 558px;
+    width: 300px;
+    padding-top: 66px;
+}
+.menuAdmin {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:0px;
+    padding: 0px;
+    margin: 0px;
+    border-top: 2px solid #615252;
 }
 .itemAdmin{
     list-style-type: none;
