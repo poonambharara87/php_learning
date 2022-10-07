@@ -169,7 +169,7 @@ MariaDB [blog]> select name, COUNT(name) from employees group by name HAVING COU
 +--------+-------------+
 1 row in set (0.001 sec)
 
-MariaDB [blog]> Delete c1 from employees c1 INNER JOIN employees c2 WHERE c1.id<c1.id AND
+MariaDB [blog]> Delete c1 from employees c1 INNER JOIN employees c2 WHERE c1.id<c2.id AND
     -> c1.name = c2.name;
 Query OK, 0 rows affected (0.009 sec)
 
