@@ -1,5 +1,5 @@
 <?php
-include '../../config.php';
+include '../../database/config.php';
 if(isset($_GET['id'])){
 
     $id = $_GET['id'];
@@ -9,9 +9,8 @@ if(isset($_GET['id'])){
             ':1' => 1
         ];
     $queryExcuted = $stmt->execute($data);
-    if($queryExcuted){
-        header("location:../users/users.php");
+    header("location:users.php");
+    }
+    if($queryExcuted == 0){
+        header("location:users.php");
     } 
-}else{
-    header("location:..users/users.php");
-}

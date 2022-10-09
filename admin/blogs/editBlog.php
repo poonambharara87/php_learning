@@ -1,6 +1,6 @@
 <?php
 
-require '../../config.php';
+include '../../database/config.php';
 include 'blogController.php';
 if(isset($_SESSION['admin']) && isset($_GET['id']) || isset($_SESSION['sub_admin']) ){
 

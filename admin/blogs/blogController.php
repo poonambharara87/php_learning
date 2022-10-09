@@ -1,5 +1,5 @@
 <?php
-include '../../config.php';
+include '../../database/config.php';
 class blogs{
     private $db;
     function __construct($db){

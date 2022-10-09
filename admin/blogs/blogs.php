@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../config.php';
+include '../../database/config.php';
 include 'blogController.php';
 
 // if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
@@ -27,11 +27,7 @@ $blogs = new blogs($db);
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Tittle</th>
-                    <th>Description</th>
-
-                    <th>Content</th>  
-                    <th>Status</th>                      
+                    <th>Tittle</th>                     
                     <th colspan="3">Action</th>
                 </tr>
             </thead>
@@ -47,11 +43,7 @@ $blogs = new blogs($db);
                             ?>
                                     <tr>
                                         <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
-                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
-                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>
-
-                                        <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
-                                        <td>Deactivate</td>
+                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>           
                                         <td><a href="activeBlog.php?id=<?php echo $row['blog_id'];?>">Active</a></td>
                                         <td><a href="editBlog.php?id=<?php echo $row['blog_id'];?>">Edit</a></td>
                                         <td><a href="deleteBlog.php?id=<?php echo $row['blog_id'];?>">Delete</a></td>        
@@ -63,10 +55,7 @@ $blogs = new blogs($db);
                                     ?>
                                     <tr>
                                         <td><?php  if(isset($row['blog_id'])){ print_r($row['blog_id']);}?></td>
-                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>
-                                        <td><?php  if(isset($row['blog_description'])){ print_r($row['blog_description']);}?></td>                                
-                                        <td><?php  if(isset($row['content'])){ print_r($row['content']);}?></td>               
-                                        <td>Activate</td>
+                                        <td><?php  if(isset($row['blog_tittle'])){ print_r($row['blog_tittle']);}?></td>             
                                         <td><a href="deactivateBlog.php?id=<?php echo $row['blog_id'];?>">Deactive</a></td>
                                         <td><a href="editBlog.php?id=<?php echo $row['blog_id'];?>">Edit</a></td>
                                         <td><a href="deleteBlog.php?id=<?php echo $row['blog_id'];?>">Delete</a></td>        

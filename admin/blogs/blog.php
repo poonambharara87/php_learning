@@ -5,7 +5,7 @@
 // }else{
 //     header("location:../admin_login.php");
 // } 
-include '../../config.php';
+include '../../database/config.php';
 include 'blogController.php';
 
 
@@ -27,6 +27,7 @@ if(isset($_POST['submit'])){
     <body>
         <div id="main-container">
             <h1>Add Blog</h1>
+
             <form action="blog.php" method="post" id="form-container" enctype="multipart/form-data">
                 <label for="fname" class="labelStyle text-color">Tittle</label>
                 <input type="text" name="tittle" class="inputStyle text-color">
@@ -48,10 +49,14 @@ if(isset($_POST['submit'])){
                  <?php
                         if(!empty($_SESSION['blogValid']['content'])){
                             echo "<span class='message'> " . $_SESSION['blogValid']['content'] . "</span>";          
+                            $_SESSION['blogValid'] = [];
                         }
                 ?>
                 <button type="submit" name="submit" value="submit" class="btn-submit">SUBMIT</button>
             </form>
+            <span class="addblog">
+            <button class="add_buttonblog rightblog"><a href="../admin_panel.php" class="alinkblog">Back</a></button>
+        </span> 
         </div>
     </body>
 </html>

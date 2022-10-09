@@ -3,7 +3,7 @@ include 'adminController.php';
 if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
 
 }else{
-    header("location:admin_login.php");
+    header("location:../admin/admin_login.php");
 }
 ?>
 
@@ -22,7 +22,7 @@ if(isset($_SESSION['admin']) || isset($_SESSION['sub_admin'])){
         <div id="sidebarAdmin">
             <ul class="menuAdmin">
                 <li class="itemAdmin">
-                    <a href="subAdmin/subAdmins.php" class="linkAdmin">Sub-Admins</a>
+                    <a href="../admin/subAdmins.php" class="linkAdmin">Sub-Admins</a>
                 </li>
 
                 <li class="itemAdmin">

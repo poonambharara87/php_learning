@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'adminController.php';
-require '../config.php';
+require '../database/config.php';
 
 if(isset($_POST['submit'])){
     //Dsn Data Source Name  

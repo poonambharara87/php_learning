@@ -1,7 +1,7 @@
 <?php
    
 session_start();
-include '../../config.php';
+include '../../database/config.php';
 include 'usersControlller.php';
 
 $users = new users($db);
@@ -26,9 +26,7 @@ $users = new users($db);
                     <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Email</th>  
-                    <th>Role</th>  
-                    <th>Status</th>                     
+                    <th>Email</th>                   
                     <th colspan="4">Action</th>
                 </tr>
             </thead>
@@ -49,9 +47,6 @@ $users = new users($db);
                                         <td><?php  if(isset($row['user_firstname'])){ print_r($row['user_firstname']);}?></td>
                                         <td><?php  if(isset($row['user_lastname'])){ print_r($row['user_lastname']);}?></td>
                                         <td><?php  if(isset($row['user_email'])){ print_r($row['user_email']);}?></td>
-                                        <td><?php  if(isset($row['role'])){ print_r($row['role']);}?></td>
-                                        <td>Deactivated</td>
-            
                                         <td><a href="active.php?id=<?php echo $row['user_id'];?>">Active</a></td>
                                         <td><a href="edit.php?id=<?php echo $row['user_id'];?>">Edit</a></td>
                                         <td><a href="delete.php?id=<?php echo $row['user_id'];?>">Delete</a></td>        
@@ -65,9 +60,6 @@ $users = new users($db);
                                         <td><?php  if(isset($row['user_firstname'])){ print_r($row['user_firstname']);}?></td>
                                         <td><?php  if(isset($row['user_lastname'])){ print_r($row['user_lastname']);}?></td>
                                         <td><?php  if(isset($row['user_email'])){ print_r($row['user_email']);}?></td>
-                                        <td><?php  if(isset($row['role'])){ print_r($row['role']);}?></td>
-                                        <td>Activated</td> 
-            
                                         <td><a href="deactive.php?id=<?php echo $row['user_id'];?>">Diactivate</a></td>
                                         <td><a href="edit.php?id=<?php echo $row['user_id'];?>">Edit</a></td>
                                         <td><a href="delete.php?id=<?php echo $row['user_id'];?>">Delete</a></td>        

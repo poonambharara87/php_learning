@@ -1,6 +1,6 @@
 <?php
 
-include '../../config.php';
+include '../../database/config.php';
 class users{
 
     private $db_conn;

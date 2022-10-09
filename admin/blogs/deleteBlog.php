@@ -1,7 +1,7 @@
 <?php
 
 include 'blogController.php';
-include '../../config.php';
+include '../../database/config.php';;
 
 
 if(isset($_GET['id'])){
